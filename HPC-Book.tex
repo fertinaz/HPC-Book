@@ -1,0 +1,49 @@
+\documentclass[a4paper,12pt]{report}
+
+%% Packages are defined in this file.
+\usepackage{packages}
+
+\pagestyle{empty}
+
+\title{Scientific High Performance Computing \\ 
+  \large A Comprehensive Introduction using Modern Techniques }
+
+\author{Fatih ERTINAZ \\ IBM Canada \\ 
+fatih.ertinaz@ibm.com}
+\date{\today}
+
+\newcommand{\tab}{\hspace{1cm}}
+\newcommand{\ud}{\,\mathrm{d}}
+% \newcommand{\grad}[1]{\gv{\nabla} #1} % for gradient
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\newpage 
+
+\tableofcontents
+\newpage
+
+\nonumber
+
+%% Chapters are included here.
+\include{chapters/01/introduction}
+\include{chapters/02/hpc}
+\include{chapters/03/linux}
+\include{chapters/04/programming}
+\include{chapters/05/compilers}
+\include{chapters/06/mathematical-models}
+\include{chapters/07/scientific-libraries}
+\include{chapters/08/scientific-applications}
+\include{chapters/09/cloud-computing}
+\include{chapters/10/final-remarks}
+
+\newpage
+
+%% References
+\bibliographystyle{plain}
+\bibliography{references} 
+
+\end{document}

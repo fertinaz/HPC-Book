@@ -1,0 +1,176 @@
+\chapter{Compilers} \label{chap-compilers}
+This section describes details about how a compiler works in a \texttt{Linux} 
+environment. Our specific focus will be on the GNU Compiler Collection (GCC),
+however general idea can be applied to other compilers as well.
+\newline \newline
+GCC is not the only compiler in the computer industry. There are lots of other
+compilers as well. To name a few:
+\begin{itemize}
+  \item \texttt{CC}: C compiler. Developed by Denis Ritchie as a part of \texttt{Unix} project.
+  It usually comes as the default compiler with \texttt{Linux} distributions. 
+  \item \texttt{Visual Studio}: Microsoft's compiler suite for \texttt{Windows} platform.
+  \item \texttt{Clang}: C and C++ compiler for Mac.
+  \item \texttt{ICC}: Intel Compiler Suite.
+  \item \texttt{XL}: IBM compilers. 
+\end{itemize}
+All these compilers and collection of compilers have pros and cons. Some of them 
+specifically designed for certain platforms and cannot be used on hardware or 
+software other than the ones that they are designed for. 
+\newline \newline
+For the purpose of this book \texttt{GCC} is the best option. Unlike \texttt{ICC}
+or \texttt{XL}, it is not hardware specific. It supports almost every industry 
+standard hardware, therefore readers are not restricted to certain hardware types.
+Also, it is free to use. It is not completely open source like \texttt{Clang}, but
+interested readers can refer to the \texttt{GitHub} repository for publicly 
+available libraries. Most of the \texttt{Linux} distribution is shipped with a
+\texttt{GCC} compiler, but it is always an option to compile and build \texttt{GCC}
+from scratch.
+\newline \newline
+For these reasons, reader can always assume the compiler used in this book is
+\texttt{GCC} unless otherwise stated explicitly.
+
+\section{What is a Compiler?}
+Following description is from the book "An Introduction to GCC" by Brian Gough;
+\textit{Compiler is a software which converts a program from the textual source code, 
+in a programming language such as C or C++, into machine code, the sequence 
+of  1’s and 0’s used to control the central processing unit (CPU) of the computer}
+(\cite{gough2004}, p. 7).
+\newline \newline
+In the same reference (\cite{gough2004}, p. 7), following source code is given:
+\begin{lstlisting}[language=C]
+    #include <stdio.h>
+    int main (void)
+    {
+        printf ("Hello, world!\n");
+        return 0; 
+    }
+\end{lstlisting}
+This is a very simple \texttt{C} code, and its expected behaviour is printing 
+"Hello, world!" to the screen. Let's assume that above source code is saved in a file 
+called \texttt{hello.c}. If we run the command below in a terminal, this code gets
+compiled and an output executable is generated. When we run this executable file, 
+we get "Hello, world!" printed to the screen:
+\begin{lstlisting}[language=bash]
+    $ gcc -Wall hello.c -o hello
+    $ ./hello
+    Hello, world!
+\end{lstlisting} 
+By running the \texttt{gcc} command, we use \texttt{GCC}. Although \texttt{GCC} is a 
+collection of compilers, \texttt{gcc} command can be used to compile codes written in 
+\texttt{C} language. 
+\newline
+\newline
+In the command above, we set the flag \texttt{-Wall} which is one of the many options of 
+\texttt{gcc} and it means "print all warnings occurred during compilation". It should 
+always be enabled for a cleaner code. Then we specify name of our source code and provide 
+an output name after the \texttt{-o} option. Note that this is an optional flag. 
+We could have used the following command as well:
+\begin{lstlisting}[language=bash]
+    $ gcc -Wall hello.c
+\end{lstlisting} 
+which spits out the following files:
+\begin{lstlisting}[language=bash]
+    $ ls -l
+    -rw-r--r--  1 ertinaz  staff    87 28 Aug 16:20 hello.c
+    -rwxr-xr-x  1 ertinaz  staff  8432 28 Aug 16:54 a.out
+    $ ./a.out
+    Hello, world!
+\end{lstlisting} 
+When an output name is not given compiler produces a file called \texttt{a.out} by 
+default. It is same as the previous executable file, however providing an output name 
+is much more convenient than the default naming.
+\newline \newline
+We will get into details about what goes on behind the scenes in the following
+sections, but it is apparent that understanding the mechanism behind compilation
+is a key factor for improving your skills to be able to use resources more efficiently..
+
+\subsection{Why is it important to know how compilers work?}
+Compiler is a very crucial aspect of your environment since it is the tool that converts
+your source code to the binary executed by the machine. Therefore one can make a nicely 
+written code perform even better using the correct compiler options. On the contrary 
+choosing inconvenient compiler flags would result in a poorly performing output.
+
+\section{How do compilers work?}
+Compilers are sophisticated tools. On the surface there are five major processes when
+one compiles a programme:
+\begin{itemize}
+  \item Pre-process: Merge all source code, e.g. include header files, add macros etc.
+  \item Convert to assembly 
+  \item Create object files
+  \item Link shared libraries
+  \item Generate binary executable
+\end{itemize}
+While this process depends on the type of compilation...
+
+\subsection{Optimization using Compilers}
+Compilers consist of three components:
+\begin{itemize}
+  \item Front-end: Modules that applies pre-processor.
+  \item Back-end: Part that applies conversion from assembly to executable binary.
+  \item Optimizer: Simply the performance enhancer. This is where the magic happens.
+\end{itemize}
+To prove my point please check out the following example. This source code is from
+(\cite{gough2004}, p. 51):
+\begin{lstlisting}[language=C]
+    #include <stdio.h>
+      
+    double powern (double d, unsigned n)
+    {
+      double x = 1.0;
+      unsigned j;
+
+      for (j = 1; j <= n; j++)
+        x *= d;
+  
+      return x; 
+    }
+
+    int main (void)
+    {
+      unsigned i;
+
+      double sum = 0.0;
+      for (i = 1; i <= 100000000; i++)
+        sum += powern (i, i % 5);
+
+      printf ("sum = %g\n", sum);
+
+      return 0; 
+    }
+\end{lstlisting}
+Details can be read in the reference. In short this code computes the $n-th$ power of a 
+floating point number by repeated multiplication. Below you'll find execution times
+of this code where two different optimization levels are used:
+\begin{lstlisting}[language=bash, escapechar=!]
+    $ gcc -Wall -O0 powern.c -lm -o powern-O0.x
+    $ time ./powern-O0.x 
+    sum = 4e+38
+
+    real 0m0.869s
+    !\colorbox{light-gray}{user 0m0.858s}!
+    sys	 0m0.004s
+\end{lstlisting}
+In this attempt, we enforce no-optimization by using \texttt{-O0} flag. This is equivalent 
+of not specifying a \texttt{-Olevel} option. When we execute the binary compiled this way, 
+we complete execution in 0.858 seconds of CPU run-time. However, as you can see below just
+changing optimization level from \texttt{-O0} to \texttt{-O3} and introducing a loop unrolling
+based optimization, we can reduce run-time to 0.150 seconds which is almost 17.5\% of the 
+previous run-time. 
+\begin{lstlisting}[language=bash, escapechar=!]
+    $ gcc -Wall -O3 -funroll-loops powern.c -lm \
+        -o powern-O3.x
+    $ time ./powern-O3.x 
+    sum = 4e+38
+
+    real 0m0.156s
+    !\colorbox{light-gray}{user 0m0.150s}!
+    sys	 0m0.003s
+\end{lstlisting}
+
+\section{Debugging, Profiling and Useful Linux Tools}
+Explain GDB - Valgrind - GProf etc.
+\newline \newline
+Explain ldd - nm - strings etc.
+
+\section{Tools for Automatic Compilation}
+Explain Make - CMake - Bazel etc. here.

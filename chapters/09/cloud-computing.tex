@@ -1,0 +1,44 @@
+\chapter{Cloud Computing and HPC}
+Even though cloud computing is not very new, one can argue that it has gained significant growth
+in the last 5 years. Currently most of the vendors are providing \texttt{IaaS} and \texttt{PaaS}
+solutions, and enterprises are transforming their business strategies to cloud native environments. 
+\newline \newline
+HPC and Scientific HPC are no exception to this situation.
+
+\section{HPC as a Service}
+Major cloud infrastucture providers offer HPC services as well.
+\subsection{Amazon Web Services}
+\subsection{IBM Cloud}
+\subsection{Google Cloud}
+\subsection{Microsoft Azure}
+\subsection{OpenStack}
+Unlike the previous vendors \texttt{OpenStack} is a Platform-as-a-Service (PaaS) offering. To simply
+put, one can transform their HPC infrastructure to a cloud service using \texttt{OpenStack}.
+
+\section{Virtulization and Containerization}
+Virtual machines and containers are similar technologies desgined for similar purposes. The basic
+idea behind their development is the abstraction of runtime environment from the host platform. 
+For instance, one can create a virtual machine that uses \texttt{Linux} on top of a \texttt{Windows} 
+machine and can run \texttt{Linux} application in that VM. This technology has been used very 
+efficiently by data centers in the last 2 decades. However, there is one disadvantage of VMs; they
+are a complete mimic of a host system and because of that they consume lots of resources.   
+\newline \newline
+Containerization solves this platform. Unlike VMs, containers are not a complete OS and therefore
+they are much less light-weight compared to VMS.
+\subsection{Docker Containers}
+\subsection{Singularity}
+\texttt{Singularity} is one of the most exciting projects in the HPC community. It is a containerization 
+application which does not required priviliged user permissions. Therefore, it is more secure than
+\texttt{Docker} and used widely by HPC centers.
+
+
+\section{Orchestration and Scheduling}
+Orchestration of the container deployments is a crucial task of the containerization management.
+\subsection{Kubernetes}
+\texttt{Kubernetes} became the de-facto standard of the container orchestrators.
+
+\section{Storage and Networking as a Software}
+
+\section{Performance and Comparison to Traditional HPC}
+\subsection{InfiniBand and RDMA}
+
