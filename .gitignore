@@ -2,11 +2,13 @@
 *.bbl
 *.blg
 *.dvi
+*.gz
 *.log
 *.toc
 
 **/*.aux
 **/*.log
+**/*.swp
 
 **/*.bc
 **/*.o
