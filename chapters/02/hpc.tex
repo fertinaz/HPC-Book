@@ -1,18 +1,18 @@
 \chapter{High Performance Computing} \label{chap-hpc}
 This chapter starts with a clear description of High Performance Computing (HPC), and then
-explains the scientific aspects of it. Then we clarify how such infrastructures are built
-by providing information about key components of typical HPC requirements.
+explains the scientific aspects of it. Then, we explain how \texttt{HPC} solutions are architected
+by providing information about key components of typical \texttt{HPC} requirements.
 
 \section{What is HPC?}
-HPC is an ambiguous term unless an explicit definition is given. While an enterprise might 
+\texttt{HPC} is an ambiguous term unless an explicit definition is given. While an enterprise might 
 use to represent a mainframe system that handles millions of financial transactions per second, 
 a digital artist can refer to a workstation that renders gigabytes of videos. A general 
 definition can be "A complex execution that is invoked to calculate a result" (REF HERE!!!). 
 According to this definition, there are two key properties we can emphasize; 
 \begin{itemize}
-  \item Life-cycle: Unlike services or daemons, we expect HPC applications to end once 
+  \item Life-cycle: Unlike services or daemons, we expect \texttt{HPC} applications to end once 
 computations are done.
-  \item Complexity: HPC applications should handle complicated tasks that would normally 
+  \item Complexity: \texttt{HPC} applications should handle complicated tasks that would normally 
 be either impossible or at least be very hard to complete on a typical computer.
 \end{itemize}
 Based on the first item above a very basic example can be a small program that computes 
@@ -20,8 +20,8 @@ the area of a square from a given input. This code can take an input from the us
 executes the algorithm which is required to calculate the result. When it is complete, OS 
 terminates it. 
 \newline \newline
-However if an HPC application becomes this simple, then we might have to refer all 
-applications as HPC application which becomes odd. To narrow it down, we consider the 
+However if an \texttt{HPC} application becomes this simple, then we might have to refer all 
+applications as \texttt{HPC} application which becomes odd. To narrow it down, we consider the 
 second item above and assume that the calculation made by the computer should be based 
 on an complicated algorithm such as solving turbulent wind flow over a hilly terrain, 
 prediction of cavity bubbles around rotating ship propellers or accretion disks between 
