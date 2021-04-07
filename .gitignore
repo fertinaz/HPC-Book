@@ -1,0 +1,13 @@
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.log
+*.toc
+
+**/*.aux
+**/*.log
+
+**/*.bc
+**/*.o
+**/*.x
