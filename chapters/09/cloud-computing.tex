@@ -1,4 +1,4 @@
-\chapter{Cloud Computing and HPC}
+\chapter{Cloud Computing and HPC} \label{chap-cloud}
 Even though cloud computing is not very new, one can argue that it has gained significant growth
 in the last 5 years. Currently most of the vendors are providing \texttt{IaaS} and \texttt{PaaS}
 solutions, and enterprises are transforming their business strategies to cloud native environments. 
@@ -25,12 +25,12 @@ are a complete mimic of a host system and because of that they consume lots of r
 \newline \newline
 Containerization solves this platform. Unlike VMs, containers are not a complete OS and therefore
 they are much less light-weight compared to VMS.
-\subsection{Docker Containers}
+\subsection{Docker}
 \subsection{Singularity}
 \texttt{Singularity} is one of the most exciting projects in the HPC community. It is a containerization 
 application which does not required priviliged user permissions. Therefore, it is more secure than
 \texttt{Docker} and used widely by HPC centers.
-
+\subsection{Podman}
 
 \section{Orchestration and Scheduling}
 Orchestration of the container deployments is a crucial task of the containerization management.
@@ -38,6 +38,7 @@ Orchestration of the container deployments is a crucial task of the containeriza
 \texttt{Kubernetes} became the de-facto standard of the container orchestrators.
 
 \section{Storage and Networking as a Software}
+\subsection{Object Storage}
 
 \section{Performance and Comparison to Traditional HPC}
 \subsection{InfiniBand and RDMA}
