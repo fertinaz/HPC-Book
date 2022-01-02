@@ -2,12 +2,17 @@
 *.bbl
 *.blg
 *.dvi
+*.fdb_latexmk
+*.fls
 *.gz
 *.log
 *.toc
+*.xdv
 
 **/*.aux
 **/*.log
+**/*.swn
+**/*.swo
 **/*.swp
 
 **/*.bc

@@ -1,14 +1,14 @@
 \chapter{High Performance Computing} \label{chap-hpc}
-This chapter starts with a clear description of High Performance Computing (HPC), and then
-explains the scientific aspects of it. Then, we explain how \texttt{HPC} solutions are architected
-by providing information about key components of typical \texttt{HPC} requirements.
+This chapter starts with the description of High-Performance Computing (HPC) and then 
+provides information about various aspects of it. The final section is devoted to how 
+\texttt{HPC} solutions are architected using crucial components of \texttt{HPC} environments.
 
 \section{What is HPC?}
-\texttt{HPC} is an ambiguous term unless an explicit definition is given. While an enterprise might 
-use to represent a mainframe system that handles millions of financial transactions per second, 
-a digital artist can refer to a workstation that renders gigabytes of videos. A general 
-definition can be "A complex execution that is invoked to calculate a result" (REF HERE!!!). 
-According to this definition, there are two key properties we can emphasize; 
+\texttt{HPC} is an ambiguous term unless an explicit definition is given. While an enterprise 
+might use to represent a mainframe system that handles millions of financial transactions per 
+second, a digital artist can refer to a workstation that renders gigabytes of videos. 
+A general definition can be "A complex execution that is invoked to calculate a result" 
+(REF HERE!!!). According to this definition, there are two key properties we can emphasize; 
 \begin{itemize}
   \item Life-cycle: Unlike services or daemons, we expect \texttt{HPC} applications to end once 
 computations are done.
@@ -17,7 +17,7 @@ be either impossible or at least be very hard to complete on a typical computer.
 \end{itemize}
 Based on the first item above a very basic example can be a small program that computes 
 the area of a square from a given input. This code can take an input from the user, then 
-executes the algorithm which is required to calculate the result. When it is complete, OS 
+execute the algorithm which is required to calculate the result. When it is complete, OS 
 terminates it. 
 \newline \newline
 However if an \texttt{HPC} application becomes this simple, then we might have to refer all 
